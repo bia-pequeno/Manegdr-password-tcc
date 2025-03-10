@@ -17,6 +17,9 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 - **Pydantic:** Biblioteca para validação de dados.
 - **Uvicorn:** Servidor ASGI para execução da API.
 
+## Acesse o site aqui
+- https://manegdr-password-tcc.vercel.app/
+
 ## Endpoints
 
 ```
