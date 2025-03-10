@@ -14,6 +14,7 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 
 - **FastAPI:** Framework web para construção de APIs.
 - **Cryptography (Fernet):** Para criptografar e descriptografar senhas.
+- **SQLite:** Banco de dados utilizado para armazenar as senhas.
 - **Pydantic:** Biblioteca para validação de dados.
 - **Uvicorn:** Servidor ASGI para execução da API.
 
@@ -50,21 +51,22 @@ Retorna a senha descriptografada associada ao domínio fornecido.
 ```
 /managedr-password
 ├── /db
-│   ├── Password.txt 
-├── /keys                   
+│ ├── database.py
+│ ├── passwords.db
 ├── /model
-│   ├── password.py         
+│ ├── password.py
 ├── /static
-│   ├── script.js
-│   ├── styles.css
-├── /templates
-│   ├── index.html
-│   ├── templates.py
+│ ├── script.js
+│ ├── styles.css
+├── /templates │
+├── index.html │
+├── templates.py
 ├── /views
-│   ├── password_views.py
+│ ├── password_views.py
+│ ├── password_utils.py
 ├── main.py
-├── requirements.txt  
-└── vercel.json   
+├── requirements.txt
+└── vercel.json  
 ```
 
 ### Requisitos
@@ -73,6 +75,7 @@ Retorna a senha descriptografada associada ao domínio fornecido.
 - **FastAPI**
 - **Uvicorn**
 - **Cryptography**
+- **SQLite**
 
 ### Instalação
 
@@ -108,7 +111,7 @@ Retorna a senha descriptografada associada ao domínio fornecido.
 5. **Instale as dependências:**
 
    ```bash
-   pip install fastapi uvicorn cryptography
+   pip install fastapi uvicorn cryptography sqlite3
    ```
 
 ### Execução
