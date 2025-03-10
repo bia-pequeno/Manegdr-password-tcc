@@ -1,39 +1,64 @@
 from datetime import datetime
 from pathlib import Path
+import sqlite3
 
 class BaseModel:
     BASE_DIR = Path(__file__).resolve().parent.parent
     DB_DIR = BASE_DIR / 'db'
+    DB_PATH = DB_DIR / 'passwords.db'
+
+    def __init__(self):
+        self._create_table()  # Garante que a tabela existe ao instanciar a classe
+
+    def _create_table(self):
+        """Cria a tabela se não existir no banco de dados"""
+        conn = sqlite3.connect(self.DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(f"""
+            CREATE TABLE IF NOT EXISTS {self.__class__.__name__} (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                domain TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                create_at TEXT NOT NULL,
+                expire INTEGER NOT NULL
+            )
+        """)
+        conn.commit()
+        conn.close()
 
     def save(self):
-        table_path = Path(self.DB_DIR / f'{self.__class__.__name__}.txt')
-        if not table_path.exists():
-            table_path.touch()
-        with open(table_path, 'a') as arq:
-            arq.write("|".join(list(map(str, self.__dict__.values()))))
-            arq.write('\n')
-        print(f"Dados salvos: {self.__dict__}")  # Adicionado para depuração
+        """Salva os dados no banco de dados SQLite"""
+        conn = sqlite3.connect(self.DB_PATH)
+        cursor = conn.cursor()
+
+        cursor.execute(f"""
+            INSERT INTO {self.__class__.__name__} (domain, password, create_at, expire) 
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(domain) DO UPDATE SET password=excluded.password, create_at=excluded.create_at, expire=excluded.expire
+        """, (self.domain, self.password, self.create_at, self.expire))
+
+        conn.commit()
+        conn.close()
+
+        print(f"Dados salvos: {self.__dict__}")  # Depuração
 
     @classmethod
     def get(cls):
-        table_path = Path(cls.DB_DIR / f'{cls.__name__}.txt')
+        """Retorna todas as senhas salvas no banco"""
+        conn = sqlite3.connect(cls.DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT domain, password, create_at, expire FROM {cls.__name__}")
+        rows = cursor.fetchall()
+        conn.close()
 
-        if not table_path.exists():
-            table_path.touch()
-        with open(table_path, 'r') as arq:
-            x = arq.readlines()
+        atributos = ["domain", "password", "create_at", "expire"]
+        results = [dict(zip(atributos, row)) for row in rows]
 
-        results = []
-        atributos = vars(cls()).keys()
-
-        for i in x:
-            split_v = i.split('|')
-            tmp_dict = dict(zip(atributos, split_v))
-            results.append(tmp_dict)
-        return results   
+        return results
 
 class Password(BaseModel):
     def __init__(self, domain=None, password=None, expire=False):
+        super().__init__()  # Chama o construtor da classe BaseModel
         self.domain = domain
         self.password = password
         self.create_at = datetime.now().isoformat()
