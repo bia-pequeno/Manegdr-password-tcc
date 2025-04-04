@@ -68,3 +68,15 @@ document.getElementById('view-password-form').addEventListener('submit', functio
         console.error('Erro ao recuperar a senha:', error);
     });
 });
+
+function fetchAllDomains() {
+    fetch('/view_all_domains')
+    .then(response => response.json())
+    .then(data => {
+        const resultDiv = document.getElementById('domain-list');
+        resultDiv.innerHTML = data.domains.map(domain => `<p>${domain}</p>`).join('');  // Exibe os domínios em formato de lista
+    })
+    .catch(error => {
+        console.error('Erro ao buscar domínios:', error);
+    });
+}

@@ -4,12 +4,14 @@ import os
 # Identificar se está em produção no Vercel
 if os.getenv("VERCEL_ENV"):
     DB_PATH = "/tmp/passwords.db"  # No Vercel, usamos /tmp
+    print(f"Usando o banco de dados no caminho: {DB_PATH}")
 else:
     DB_PATH = os.path.join(os.path.dirname(__file__), "passwords.db")  # Local
 
 # Função para conectar ao banco de dados
 def connect_db():
     conn = sqlite3.connect(DB_PATH)
+    print(f"Conexão com o banco: {DB_PATH}")
     return conn
 
 # Função para criar a tabela de senhas, se não existir

@@ -5,8 +5,14 @@ from pydantic import BaseModel
 from cryptography.fernet import Fernet
 from db.database import save_password_db, get_password_db
 import os
+from db.database import connect_db
+import sqlite3
+
 
 app = FastAPI()
+
+if os.getenv("VERCEL_ENV"):
+    print("Arquivos no diretório /tmp:", os.listdir("/tmp"))  # Log para listar os arquivos no /tmp
 
 # Modelos
 class PasswordData(BaseModel):
@@ -67,19 +73,43 @@ async def save_password(data: PasswordData):
 @app.get("/view_password")
 async def view_password(domain: str, key: str):
     try:
-        # Recuperando a senha criptografada do banco
+        # Recuperar dados do banco
         result = get_password_db(domain)
         if result is None:
             raise HTTPException(status_code=404, detail="Senha não encontrada.")
-
+        
         encrypted_password, stored_key = result
         if stored_key != key:
             raise HTTPException(status_code=400, detail="Chave incorreta.")
-
-        # Descriptografando a senha
+        
+        # Descriptografar senha
         hasher = FernetHasher(stored_key)
         password = hasher.decrypt(encrypted_password)
-
         return {"domain": domain, "password": password}
+    except sqlite3.Error as e:
+        print(f"Erro no banco de dados: {e}")
+        raise HTTPException(status_code=500, detail="Erro no banco de dados.")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao recuperar a senha: {e}")
+        print(f"Erro geral: {e}")  # Log para depuração
+        raise HTTPException(status_code=500, detail="Erro interno no servidor.")
+
+@app.get("/check_db")
+async def check_db():
+    if os.path.exists("/tmp/passwords.db"):
+        return {"message": "Banco de dados encontrado no Vercel", "path": "/tmp/passwords.db"}
+    else:
+        return {"message": "Banco de dados NÃO encontrado", "path": "/tmp"}
+
+@app.get("/view_all_domains")
+async def view_all_domains():
+    try:
+        conn = connect_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT domain FROM passwords")  # Busca apenas os domínios
+        domains = cursor.fetchall()
+        return {"domains": [row[0] for row in domains]}  # Retorna a lista de domínios
+    except sqlite3.Error as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar domínios: {e}")
+    finally:
+        conn.close()
+
