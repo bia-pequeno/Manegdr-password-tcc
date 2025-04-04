@@ -31,9 +31,13 @@
                     <input type="text" id="view-domain" name="domain" required>
                     <label for="view-key">Chave:</label>
                     <input type="text" id="view-key" name="key" required>
-                    <button type="submit">Ver</button>
+                    <button type="submit">Ver</button>   
                 </form>
                 <div id="password-result"></div>
+            </div>
+            <div class="box-input">
+                <button onclick="fetchAllDomains()">Ver Todos os Domínios</button>
+                <div id="domain-list"></div>                
             </div>
         </div>
     </section>
