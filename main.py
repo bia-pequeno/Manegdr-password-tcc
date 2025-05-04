@@ -113,3 +113,18 @@ async def view_all_domains():
     finally:
         conn.close()
 
+@app.delete("/delete_password")
+async def delete_password(domain: str):
+    try:
+        conn = connect_db()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM passwords WHERE domain=?", (domain,))
+        conn.commit()
+        if cursor.rowcount:
+            return {"message": "Senha excluída com sucesso!"}
+        else:
+            raise HTTPException(status_code=404, detail="Domínio não encontrado.")
+    except sqlite3.Error as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao excluir senha: {e}")
+    finally:
+        conn.close()
