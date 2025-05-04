@@ -80,3 +80,14 @@ function fetchAllDomains() {
         console.error('Erro ao buscar domínios:', error);
     });
 }
+
+function deletePassword(domain) {
+    fetch(`/delete_password?domain=${encodeURIComponent(domain)}`, { method: 'DELETE' })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message || 'Senha excluída com sucesso!');
+    })
+    .catch(error => {
+        console.error('Erro ao excluir a senha:', error);
+    });
+}

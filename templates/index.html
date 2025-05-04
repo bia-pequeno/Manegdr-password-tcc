@@ -4,40 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciador de Senhas</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="../static/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <section class="container">
         <h1>Bem-vindo ao<br/> Gerenciador de Senhas</h1>
         <div class="box">
-            <div class="box-input">
-                <h2>Salvar nova senha</h2>
-                <form id="save-password-form">
+            <div style="display: flex; gap: 15px;">
+                <div class="box-input">
+                    <h2>Salvar nova senha</h2>
+                    <form id="save-password-form">
+                        <label for="domain">Domínio:</label>
+                        <input type="text" id="domain" name="domain" required>
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" onclick="generateKey()">Gerar Chave</button>
+                        <label for="key">Chave:</label>
+                        <input type="text" id="key" name="key" readonly>
+                        <button type="submit">Salvar</button>
+                    </form>
+                </div>
+                <div class="box-input">
+                    <h2>Ver senha</h2>
+                    <form id="view-password-form">
+                        <label for="view-domain">Domínio:</label>
+                        <input type="text" id="view-domain" name="domain" required>
+                        <label for="view-key">Chave:</label>
+                        <input type="text" id="view-key" name="key" required>
+                        <button type="submit">Ver</button>   
+                    </form>
+                    <div id="password-result"></div>
+                </div>                
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="box-input">
+                    <button onclick="fetchAllDomains()">Ver Todos os Domínios</button>
+                    <div id="domain-list"></div>                
+                </div>
+                <div class="box-input">
                     <label for="domain">Domínio:</label>
                     <input type="text" id="domain" name="domain" required>
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
-                    <button type="button" onclick="generateKey()">Gerar Chave</button>
-                    <label for="key">Chave:</label>
-                    <input type="text" id="key" name="key" readonly>
-                    <button type="submit">Salvar</button>
-                </form>
-            </div>
-            <div class="box-input">
-                <h2>Ver senha</h2>
-                <form id="view-password-form">
-                    <label for="view-domain">Domínio:</label>
-                    <input type="text" id="view-domain" name="domain" required>
-                    <label for="view-key">Chave:</label>
-                    <input type="text" id="view-key" name="key" required>
-                    <button type="submit">Ver</button>   
-                </form>
-                <div id="password-result"></div>
-            </div>
-            <div class="box-input">
-                <button onclick="fetchAllDomains()">Ver Todos os Domínios</button>
-                <div id="domain-list"></div>                
+                    <button onclick="deletePassword(document.getElementById('domain').value)">Excluir Senha</button>
+                </div>
             </div>
         </div>
     </section>

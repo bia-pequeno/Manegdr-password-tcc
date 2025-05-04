@@ -28,7 +28,7 @@ body {
     display: flex;
     gap: 15px;
     width: 100%;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -41,6 +41,7 @@ body {
     padding: 20px;
     border-radius: 10px;
 }
+
 
 h1 {
     text-align: center;
