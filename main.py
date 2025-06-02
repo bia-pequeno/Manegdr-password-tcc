@@ -7,7 +7,8 @@ from db.database import save_password_db, get_password_db
 import os
 from db.database import connect_db
 import sqlite3
-
+import secrets
+import string
 
 app = FastAPI()
 
@@ -128,3 +129,9 @@ async def delete_password(domain: str):
         raise HTTPException(status_code=500, detail=f"Erro ao excluir senha: {e}")
     finally:
         conn.close()
+
+@app.get("/generate_password")
+async def generate_password(length: int = 12):
+    characters = string.ascii_letters + string.digits + "!@#$%^&*()-_"
+    password = ''.join(secrets.choice(characters) for _ in range(length))
+    return {"password": password}

@@ -91,3 +91,18 @@ function deletePassword(domain) {
         console.error('Erro ao excluir a senha:', error);
     });
 }
+
+function generatePassword() {
+    fetch('/generate_password')
+    .then(response => response.json())
+    .then(data => {
+        if (data.password) {
+            document.getElementById('password').value = data.password;  // Atualiza o campo de senha
+        } else {
+            alert('Erro ao gerar senha.');
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao gerar senha:', error);
+    });
+}
