@@ -89,7 +89,3 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
    pip install fastapi uvicorn cryptography sqlite3
    ```
 
-### Autora
-
-Desenvolvedora: Beatriz Pequeno
-
