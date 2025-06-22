@@ -21,6 +21,18 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 ## Acesse o site aqui
 - https://manegdr-password-tcc.vercel.app/
 
+## 🖼️ Demonstrações
+
+### 💻 Visualização Desktop
+
+<img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/desktop.png" alt="Tela Desktop" width="700"/>
+
+### 📱 Visualização Mobile
+
+<img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/mobile.png" alt="Tela Mobile" width="300"/>
+
+
+
 ### Estrutura do Projeto
 
 ```
@@ -88,4 +100,3 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
    ```bash
    pip install fastapi uvicorn cryptography sqlite3
    ```
-
