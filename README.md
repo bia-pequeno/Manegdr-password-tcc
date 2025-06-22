@@ -89,31 +89,6 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
    pip install fastapi uvicorn cryptography sqlite3
    ```
 
-### Execução
-
-Para iniciar a API, utilize o comando:
-
-```bash
-uvicorn main:app --reload
-```
-ou
-```bash
-python -m uvicorn main:app --reload
-```
-
-A API estará disponível em [http://127.0.0.1:8000](http://127.0.0.1:8000).
-
-### Acessando a Documentação da API
-
-1. **Swagger UI:**
-   ```
-   http://127.0.0.1:8000/docs
-   ```
-2. **ReDoc:**
-   ```
-   http://127.0.0.1:8000/redoc
-   ```
-
 ### Autora
 
 Desenvolvedora: Beatriz Pequeno
