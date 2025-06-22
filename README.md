@@ -25,13 +25,7 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 
 ### 💻 Visualização Desktop
 
-<img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/desktop.png" alt="Tela Desktop" width="700"/>
-
-### 📱 Visualização Mobile
-
-<img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/mobile.png" alt="Tela Mobile" width="300"/>
-
-
+<img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/desktop.png" alt="Tela Desktop" width="1000"/>
 
 ### Estrutura do Projeto
 
