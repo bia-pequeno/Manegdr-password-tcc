@@ -94,3 +94,14 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
    ```bash
    pip install fastapi uvicorn cryptography sqlite3
    ```
+ ### Execução
+
+ Para iniciar a aplicação, utilize o comando:
+
+   ```bash
+   uvicorn main:app --reload
+   ```
+   ou
+   ```bash
+   python -m uvicorn main:app --reload
+   ```
