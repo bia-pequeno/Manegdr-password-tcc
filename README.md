@@ -14,6 +14,7 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 
 - **FastAPI:** Framework web para construção de APIs.
 - **Cryptography (Fernet):** Para criptografar e descriptografar senhas.
+- **SQLite:** Banco de dados utilizado para armazenar as senhas.
 - **Pydantic:** Biblioteca para validação de dados.
 - **Uvicorn:** Servidor ASGI para execução da API.
 
@@ -31,26 +32,28 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 <img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/mobile.png" alt="Tela Mobile" width="300"/>
 
 
+
 ### Estrutura do Projeto
 
 ```
 /managedr-password
 ├── /db
-│   ├── Password.txt 
-├── /keys                   
+│ ├── database.py
+│ ├── passwords.db
 ├── /model
-│   ├── password.py         
+│ ├── password.py
 ├── /static
-│   ├── script.js
-│   ├── styles.css
-├── /templates
-│   ├── index.html
-│   ├── templates.py
+│ ├── script.js
+│ ├── styles.css
+├── /templates │
+├── index.html │
+├── templates.py
 ├── /views
-│   ├── password_views.py
+│ ├── password_views.py
+│ ├── password_utils.py
 ├── main.py
-├── requirements.txt  
-└── vercel.json   
+├── requirements.txt
+└── vercel.json  
 ```
 
 ### Requisitos
@@ -59,6 +62,7 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 - **FastAPI**
 - **Uvicorn**
 - **Cryptography**
+- **SQLite**
 
 ### Instalação
 
@@ -94,5 +98,5 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 5. **Instale as dependências:**
 
    ```bash
-   pip install fastapi uvicorn cryptography
+   pip install fastapi uvicorn cryptography sqlite3
    ```
