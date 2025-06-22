@@ -10,8 +10,8 @@
 <body>
     <section class="container">
         <h1>Bem-vindo ao<br/> Gerenciador de Senhas</h1>
-        <div class="box">
-            <div style="display: flex; gap: 15px;">
+        <div class="box" >
+            <div class="primary" style="display: flex; gap: 15px;">
                 <div class="box-input">
                     <h2>Salvar nova senha</h2>
                     <form id="save-password-form">
@@ -38,12 +38,12 @@
                     <div id="password-result"></div>
                 </div>                
             </div>
-            <div style="display: flex; gap: 15px;">
-                <div class="box-input">
+            <div class="second" style="display: flex; gap: 15px;">
+                <div class="box-input2">
                     <button onclick="fetchAllDomains()">Ver Todos os Domínios</button>
                     <div id="domain-list"></div>                
                 </div>
-                <div class="box-input">
+                <div class="box-input2">
                     <label for="domain">Domínio:</label>
                     <input type="text" id="domain" name="domain" required>
                     <button onclick="deletePassword(document.getElementById('domain').value)">Excluir Senha</button>

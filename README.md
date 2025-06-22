@@ -20,30 +20,16 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 ## Acesse o site aqui
 - https://manegdr-password-tcc.vercel.app/
 
-## Endpoints
+## 🖼️ Demonstrações
 
-```
-### 1. Criar Chave de Criptografia
-POST /create_key
-Gera uma chave de criptografia para proteger as senhas.
+### 💻 Visualização Desktop
 
-### 2. Armazenar Senha
-POST /save_password
-body
-  json{
-    "domain": "example.com",
-    "password": "senha123"
-  }
-response
-  json{
-    "mensagem": "Senha armazenada com sucesso"
-  }
+<img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/desktop.png" alt="Tela Desktop" width="700"/>
 
-### 3. Buscar Senha
-GET /get_password/{domain}
-Retorna a senha descriptografada associada ao domínio fornecido.
+### 📱 Visualização Mobile
 
-```
+<img src="https://raw.githubusercontent.com/bia-pequeno/Manegdr-password-tcc/main/assets/mobile.png" alt="Tela Mobile" width="300"/>
+
 
 ### Estrutura do Projeto
 
@@ -110,33 +96,3 @@ Retorna a senha descriptografada associada ao domínio fornecido.
    ```bash
    pip install fastapi uvicorn cryptography
    ```
-
-### Execução
-
-Para iniciar a API, utilize o comando:
-
-```bash
-uvicorn main:app --reload
-```
-ou
-```bash
-python -m uvicorn main:app --reload
-```
-
-A API estará disponível em [http://127.0.0.1:8000](http://127.0.0.1:8000).
-
-### Acessando a Documentação da API
-
-1. **Swagger UI:**
-   ```
-   http://127.0.0.1:8000/docs
-   ```
-2. **ReDoc:**
-   ```
-   http://127.0.0.1:8000/redoc
-   ```
-
-### Autora
-
-Desenvolvedora: Beatriz Pequeno
-

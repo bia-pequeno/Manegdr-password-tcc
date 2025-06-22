@@ -42,6 +42,15 @@ body {
     border-radius: 10px;
 }
 
+.box-input2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
 
 h1 {
     text-align: center;
@@ -72,6 +81,9 @@ button:hover {
     .box-input {
         width: 100%;
     }
+    .box-input2 {
+        width: 100%;
+    }
     h1 {
         font-size: 2rem;
     }
@@ -80,6 +92,13 @@ button:hover {
     }
     .box{
         display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .primary {
+        flex-direction: column;
+    }
+    .second {
         flex-direction: column;
     }
 }
