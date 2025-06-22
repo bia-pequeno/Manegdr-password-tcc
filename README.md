@@ -21,31 +21,6 @@ O Gerenciador de Senhas é um software que inclui uma API desenvolvida em FastAP
 ## Acesse o site aqui
 - https://manegdr-password-tcc.vercel.app/
 
-## Endpoints
-
-```
-### 1. Criar Chave de Criptografia
-POST /create_key
-Gera uma chave de criptografia para proteger as senhas.
-
-### 2. Armazenar Senha
-POST /save_password
-body
-  json{
-    "domain": "example.com",
-    "password": "senha123"
-  }
-response
-  json{
-    "mensagem": "Senha armazenada com sucesso"
-  }
-
-### 3. Buscar Senha
-GET /get_password/{domain}
-Retorna a senha descriptografada associada ao domínio fornecido.
-
-```
-
 ### Estrutura do Projeto
 
 ```
